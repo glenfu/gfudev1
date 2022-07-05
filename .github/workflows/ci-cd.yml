@@ -1,12 +1,12 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI / CD
 
 # Controls when the workflow will run
 on:
   # Triggers the workflow on push or pull request events but only for the "main" branch
   push:
-    branches: [ "main" ]
+    branches: ["main"]
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -27,7 +27,23 @@ jobs:
           solution-file: packed-solutions/con_core.zip
           solution-folder: solutions/con_core/src
           solution-type: Both
-      - uses: actions/upload-artifact@v2
+      - uses: actions/upload-artifact@v3
+        with:
+          path: packed-solutions
+          name: packed-solutions
+  deploy:
+    environment: production
+    needs:
+      - build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/download-artifact@v3
         with:
           name: packed-solutions
-          path: packed-solutions
+      - uses: microsoft/powerplatform-actions/import-solution@v0
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-file: con_core_managed.zip
