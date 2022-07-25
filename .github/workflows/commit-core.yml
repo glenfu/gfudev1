@@ -5,8 +5,8 @@ name: Commit Core
 # Controls when the workflow will run
 on:
   push:
-    paths:
-      - solutions/**
+    #paths:
+    #- solutions/**
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
