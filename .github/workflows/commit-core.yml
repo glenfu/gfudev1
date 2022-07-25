@@ -5,8 +5,8 @@ name: Commit Core
 # Controls when the workflow will run
 on:
   push:
-    #paths:
-    #- solutions/**
+    paths:
+      - solutions/**
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
     inputs:
@@ -23,6 +23,14 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.MY_GITHUB_TOKEN }}
+      - uses: microsoft/powerplatform-actions/export-solution@v0
+        with:
+          environment-url: ${{ secrets.URL }}
+          app-id: ${{ secrets.CLIENT_ID }}
+          client-secret: ${{ secrets.CLIENT_SECRET }}
+          tenant-id: ${{ secrets.TENANT_ID }}
+          solution-output-file: con_core.zip
+          solution-name: con_core
       - uses: microsoft/powerplatform-actions/export-solution@v0
         with:
           environment-url: ${{ secrets.URL }}
