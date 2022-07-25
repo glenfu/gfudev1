@@ -29,7 +29,7 @@ jobs:
           app-id: ${{ secrets.CLIENT_ID }}
           client-secret: ${{ secrets.CLIENT_SECRET }}
           tenant-id: ${{ secrets.TENANT_ID }}
-          solution-output-file: con_core.zip
+          solution-output-file: con_core_managed.zip
           solution-name: con_core
           managed: true
       - name: Clear existing solution folder
