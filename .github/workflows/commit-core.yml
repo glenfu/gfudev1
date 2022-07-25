@@ -48,6 +48,6 @@ jobs:
           solution-file: con_core.zip
           solution-folder: solutions/con_core/src
           solution-type: Both
-      - uses: endbug/add-and-commit@v8
+      - uses: endbug/add-and-commit@v9
         with:
           message: ${{ github.event.inputs.message }}
