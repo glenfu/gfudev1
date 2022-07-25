@@ -33,7 +33,7 @@ jobs:
           name: packed-solutions
   deploy:
     environment: production
-    if: github.ref == "refs/head/main"
+    if: github.ref == 'refs/head/main'
     needs:
       - build
     runs-on: ubuntu-latest
