@@ -45,6 +45,7 @@ jobs:
       - uses: actions/download-artifact@v3
         with:
           name: packed-solutions
+      - name: Import con_core
       - uses: microsoft/powerplatform-actions/import-solution@v0
         with:
           environment-url: ${{ secrets.URL }}
@@ -52,6 +53,7 @@ jobs:
           client-secret: ${{ secrets.CLIENT_SECRET }}
           tenant-id: ${{ secrets.TENANT_ID }}
           solution-file: con_core_managed.zip
+      - name: Import con_admissions
       - uses: microsoft/powerplatform-actions/import-solution@v0
         with:
           environment-url: ${{ secrets.URL }}
